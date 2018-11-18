@@ -1,9 +1,12 @@
 ---
 layout: default
-use_math: true
 ---
 
 <article class="page">
+
+	{% if page.use_math %}
+      {% include mathjax_support %}
+    {% endif %}
 
   <h1>{{ page.title }}</h1>
 
