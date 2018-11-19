@@ -210,6 +210,19 @@ img {
   }
 }
 
+.theorem {
+display: block;
+font-style: italic;
+}
+.theorem:before {
+content: "Theorem. ";
+font-weight: bold;
+font-style: normal;
+}
+.theorem[text]:before {
+content: "Theorem (" attr(text) ") ";
+}
+
 nav {
   float: right;
   margin-top: 23px; // @TODO: Vertically middle align
