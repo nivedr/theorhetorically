@@ -8,6 +8,7 @@
     tex2jax: {
       inlineMath: [ ['\(', '\)'] ],
       displayMath: [ ['$$','$$'] ],
+      processClass: "theorem"
       processEscapes: true,
       processRefs: true,
       processEnvironments: true,
