@@ -18,8 +18,8 @@ There are some important things to understand about this problem:
 
 1. Na&iuml;ve counting algorithms are not very efficient. For instance dividing space into hypercubes and counting the number of hypercubes that intersect with $$K$$ is not a practical approach - the volume of $$K$$ can be as high as $$\mathrm{vol} (\mathrm{Ball}_n (\sqrt{n})) \sim e^{\Theta(n)}$$ and as low as $$\mathrm{vol} (\mathrm{Ball}_n (\sqrt{n})) \sim \Theta(n)^{-n}$$. Any na&iuml;ve counting algorithm that is efficient for $$\mathrm{Ball}_n (\sqrt{n})$$ is not efficient for $$\mathrm{Ball}_n (1)$$ and vice-versa. Can one hope for polynomial-time (in $$n$$ and $$\epsilon$$) algorithms?
 
-<div class="theorem" text='(Theorem 2.2){^KLS97}'>
-It is possible to sample $N$ points $\{v_1,\dots,v_N\}$ from $$K$$ in time $$\mathcal{O}^* (n^4 + Nn^3)$$ such that
+(**Theorem 1**){^KLS97}
+It is possible to sample $$N$$ points $$\{v_1,\dots,v_N\}$$ from $$K$$ in time $$\mathcal{O}^* (n^4 + Nn^3)$$ such that
 1. **almost uniform**: each $$v_i$$ comes from a near uniform distribution (total variation distance to uniform is bounded by $$\epsilon$$)
 2. **almost pairwise independent**: $$i,j \in [N]$$ such that $$i \ne j$$ and $$A, B \subset K$$,
 \begin{equation\*}
