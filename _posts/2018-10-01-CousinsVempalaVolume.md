@@ -22,7 +22,7 @@ There are some important things to note about this problem:
 
 ## The seminal work of Ravi Kannan et al [[^KLS97]]
 
-Ravi Kannan et al propose what is known as a "Multiphase Monte Carlo" algorithm for volume estimation. The idea is simple - instead of directly estimating $$\frac{\mathrm{vol} (K)}{\mathrm{vol} (H)}$$, which can be exponentially small, they propose to estimate $$\mathrm{vol} (K)$$ by expressing it as scaling of a product of polynomially many factors $$\Lambda_i \in [1,2]$$ which are in turn estimated. $$m = cn \log{n}$$ domains $$K_1 \subseteq \dots \subseteq K_m$$ are generated, and $$\Lambda_i$$ is defined as $$\mathrm{vol}(K_i)/\mathrm{vol}(K_i−1)$$. By telescopic product, this becomes equal to the volume scaled by the inverse of $$ \mathrm{vol} (K_0)$$ which is a known quantity when $$K_0$$ is chosen as the unit-sphere enclosed in $$K$$. Each $$\Lambda_i$$ can now be estimated by a Monte Carlo approach, but there is a catch - how does one generate a point uniformly randomly from $$K_i$$? A means to tackle this problem is to "design" a random walk in $$K_i$$ that mixes rapidly and whose stationary distribution is uniform in $$K_i$$.
+Ravi Kannan et al propose what is known as a "Multiphase Monte Carlo" algorithm for volume estimation. The idea is simple - instead of directly estimating $$\frac{\mathrm{vol} (K)}{\mathrm{vol} (H)}$$, which can be exponentially small, they propose to estimate $$\mathrm{vol} (K)$$ by expressing it as scaling of a product of polynomially many factors $$\Lambda_i \in [1,2]$$ which are in turn estimated. $$m = cn \log{n}$$ domains $$K_1 \subseteq \dots \subseteq K_m$$ are generated, and $$\Lambda_i$$ is defined as $$\mathrm{vol}(K_i)/\mathrm{vol}(K_{i−1})$$. By telescopic product, this becomes equal to the volume scaled by the inverse of $$ \mathrm{vol} (K_0)$$ which is a known quantity when $$K_0$$ is chosen as the unit-sphere enclosed in $$K$$. Each $$\Lambda_i$$ can now be estimated by a Monte Carlo approach, but there is a catch - how does one generate a point uniformly randomly from $$K_i$$? A means to tackle this problem is to "design" a random walk in $$K_i$$ that mixes rapidly and whose stationary distribution is uniform in $$K_i$$.
 
 **Lazy random walk in $$K$$ with $$\delta$$-steps**:
 With equal probability, either:
@@ -50,6 +50,6 @@ It is possible to sample $$N$$ points $$\{v_1,\dots,v_N\}$$ from $$K$$ in time $
 	\vert \mathrm{Pr} (v_i \in A ; v_j \in B) - \mathrm{Pr} (v_i \in A) \mathrm{Pr} (v_j \in B) \vert \le \epsilon
 \end{equation\*}
 
-**Algorithm** Starting from distribution $$Q_0$$, perform a lazy random walk in $$K$$ with $$\delta$$-steps and output the point generated after $$\lceil (801 n) \ln{\frac{5}{\epsilon} \left( \frac{d}{\delta}\right)^2} \rceil$$ hops. This point is
+**Algorithm**: Starting from distribution $$Q_0$$, perform a lazy random walk in $$K$$ with $$\delta$$-steps and output the point generated after $$\lceil (801 n) \ln{\frac{5}{\epsilon} \left( \frac{d}{\delta}\right)^2} \rceil$$ hops. This point is
 
 [^KLS97]: Kannan, R., Lov&aacute;sz, L., Simonovits, M. [Random walks and an $$O^*(n^5)$$ volume algorithm](http://web.cs.elte.hu/~lovasz/vol5.pdf). Random Structures and Algorithms $$\mathbf{1}$$, 1-50 (1997)
