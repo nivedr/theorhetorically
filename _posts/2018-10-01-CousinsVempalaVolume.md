@@ -32,7 +32,7 @@ With equal probability, the random walk evolves as follows:
 1. Generate a uniformly random point at a distance of $$\delta$$ from the current point. The walk updates to the new point if it lies in $$K$$. If it is not in $$K$$, the walk stays at the same point. If the point updates, it is known as a "proper-step".
 2. stays at the same point.
 
-One can expect that if the random walk enters into a "corner" of $$K$$. In such a scenario, there may be an exponentially small probability for the walk to update to a new point. In this regard, there is the need to define the **conductance** at some point $x$:
+One can expect that if the random walk enters into a "corner" of $$K$$. In such a scenario, there may be an exponentially small probability for the walk to update to a new point. In this regard, there is the need to define the **conductance** at some point $$x$$:
 \begin{equation}
 \ell_\delta (x) = \frac{\mathrm{vol} (K \cap \mathrm{Ball} (\mathbf{0}, \delta))}{\mathrm{vol} (\mathrm{Ball} (\mathbf{0}, \delta))}
 \end{equation}
