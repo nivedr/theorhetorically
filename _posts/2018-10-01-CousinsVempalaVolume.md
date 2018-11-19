@@ -33,13 +33,13 @@ One can expect that if the random walk enters into a "corner" of $$K$$. In such 
 \begin{equation}
 \ell_\delta (x) = \frac{\mathrm{vol} (K \cap \mathrm{Ball} (\mathbf{0}, \delta))}{\mathrm{vol} (\mathrm{Ball} (\mathbf{0}, \delta))}
 \end{equation}
-While it may be unreasonable to expect small conductance at all points in $$K$$ (in particular, at the boundaries of $$K$$ the conductance is no more than $$0.5$$), does a large average conductance imply rapid mixing? The answer is in the affirmative and and is given by [^KLS97].
+While it may be unreasonable to expect small conductance at all points in $$K$$ (in particular, at the boundaries of $$K$$ the conductance is no more than $$0.5$$), does a large average conductance imply rapid mixing? The answer is in the affirmative and and is given by \[[^KLS97]\].
 
 ## Sandwiching and its importance
-Sandwiching $$K$$ is to find a linear transform $$A$$ such that the ratio of the radii of circumscribed and inscribed balls is small $$AK$$. In the setting considered here, the sandiching ratio by definition is at most $$\sqrt{n}$$. However in the more general setting as considered in [^KLS97] and [^DFK89], there is the additional need to sandwich $$K$$, even if approximately in order to reduce the average conductance (refer to [^KLS97] for additional discussion).
+Sandwiching $$K$$ is to find a linear transform $$A$$ such that the ratio of the radii of circumscribed and inscribed balls is small $$AK$$. In the setting considered here, the sandiching ratio by definition is at most $$\sqrt{n}$$. However in the more general setting as considered in \[[^KLS97]\] and \[[^DFK89]\], there is the additional need to sandwich $$K$$, even if approximately in order to reduce the average conductance (refer to \[[^KLS97]\] for additional discussion).
 
 ### L&ouml;wner-John Ellipsoid
-For some convex body $$K \subseteq \mathbb{R}^n$$, let $$E_{\mathrm{john}}$$ denote the ellipsoid containing $$K$$ with minimum volume. Then, shrinking $$E_{\mathrm{john}}$$ by a factor of $$n$$ gives an ellipsoid that is entirely contained in $$K$$. We do not know how to construct the L&ouml;wner-John Ellipsoid unless strong conditions are imposed on $$K$$. It is apparent that these ellipsoids provide a sandwitching ratio of $$n$$ by a linear transformation that takes the ellipsoids to a ball. [^LS93] however do show a randomized algorithm that achieves an "approximate" sandwiching ratio of $$n$$.
+For some convex body $$K \subseteq \mathbb{R}^n$$, let $$E_{\mathrm{john}}$$ denote the ellipsoid containing $$K$$ with minimum volume. Then, shrinking $$E_{\mathrm{john}}$$ by a factor of $$n$$ gives an ellipsoid that is entirely contained in $$K$$. We do not know how to construct the L&ouml;wner-John Ellipsoid unless strong conditions are imposed on $$K$$. It is apparent that these ellipsoids provide a sandwitching ratio of $$n$$ by a linear transformation that takes the ellipsoids to a ball. \[[^LS93]\] however do show a randomized algorithm that achieves an "approximate" sandwiching ratio of $$n$$.
 
 **Theorem 1** \[[^KLS97]\]:
 It is possible to sample $$N$$ points $$\{v_1,\dots,v_N\}$$ from $$K$$ in time $$\mathcal{O}^* (n^4 + Nn^3)$$ such that
