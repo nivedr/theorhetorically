@@ -9,22 +9,35 @@ This blog post discusses Santosh Vempala and Ben Cousins' [2014 paper](https://a
 ## The Problem
 A convex body $$K \subset \mathbb{R}^n$$ is said to be "well-rounded" if it lies entirely in between concentric balls of radius $$1$$ and radius $$\sqrt{n}$$:
 \begin{equation}
-\mathrm{Ball}_n (1) \subseteq K \subseteq \mathrm{Ball}_n (\sqrt{n})
+\mathrm{Ball}_n (\mathbf{0},1) \subseteq K \subseteq \mathrm{Ball}_n (\mathbf{0},\sqrt{n})
 \end{equation}
 Given a well-rounded convex body $$K \subset \mathbb{R}^n$$,
 1. The volume estimation problem is to estimate $$\mathrm{vol} (K)$$ to within a fractional error of $$\epsilon$$.
 2. The Gaussian volume estimation problem is to estimate $$\int_{K} \gamma(x) \mathrm{d} x$$ to within a fractional error of $$\epsilon$$ where $$\gamma(x)$$ is the Gaussian density function, $$(2 \pi)^{-n/2} e^{-\| x \|^2 / 2}$$.
 
-An obvious algorithm to try out is to partition the space into cells and count the number of cells that intersect with $$K$$. Such a na&iuml;ve counting algorithm is probably not very efficient - there would potentially be too many cells to count. For instance, dividing the space into hypercubes and counting the number of hypercubes that intersect with $$K$$ is not a practical approach - the volume of $$K$$ can be as high as $$\mathrm{vol} (\mathrm{Ball}_n (\sqrt{n})) \sim e^{\Theta(n)}$$ and as low as $$\mathrm{vol} (\mathrm{Ball}_n (\sqrt{n})) \sim \Theta(n)^{-n}$$. Any na&iuml;ve counting algorithm that is efficient for $$\mathrm{Ball}_n (\sqrt{n})$$ is not efficient for $$\mathrm{Ball}_n (1)$$ and vice-versa. Can one hope for polynomial-time (in $$n$$ and $$\epsilon$$) algorithms?
+There are some important things to note about this problem:
 
-## The seminal work of Ravi Kannan et al [[^KLS97]]
+1. An obvious deterministic approach to try is to partition the space into cells and count the number of cells that intersect with $$K$$. Such a na&iuml;ve counting algorithm is probably not very efficient - there would potentially be too many cells to count. For instance, dividing the space into hypercubes and counting the number of hypercubes that intersect with $$K$$ is not a practical approach - the volume of $$K$$ can be as high as $$\mathrm{vol} (\mathrm{Ball}_n (\mathbf{0},\sqrt{n})) \sim e^{\Theta(n)}$$ and as low as $$\mathrm{vol} (\mathrm{Ball}_n (\mathbf{0},1)) \sim \Theta(n)^{-n}$$. Any na&iuml;ve counting algorithm that is efficient for $$\mathrm{Ball}_n (\mathbf{0},\sqrt{n})$$ is not accurate for $$\mathrm{Ball}_n (\mathbf{0},1)$$ and vice-versa. Can one hope for polynomial-time (in $$n$$ and $$\epsilon$$) algorithms?
+2. A similar issue lies with a na&iuml;ve Monte-carlo approach. Given a bounding hypercube $$H$$ containing $$K$$, the volume of $$K$$ can be as low as $$ \mathrm{vol} (H) \Theta(n)^{-n}$$ (if $$K$$ is a sphere) and on average $$\Theta(n)^{n}$$ points would have to be sampled to even hit $$K$$ once.
+
+## Low&ouml;-John Ellipsoid
+For some convex body $$K \subseteq \mathbb{R}^n$$, let $$E_{\mathrm{circ}}$$ denote the ellipsoid containing $$K$$ with minimum volume. Then, shrinking $$E_{\mathrm{circ}}$$ by a factor of $$n$$ gives an ellipsoid $$E_{\mathrm{insc}} \subset K$$.
+
+## The seminal work of Ravi Kannan et al [[^KLS97]] and volume estimation by sampling
+
+Ravi Kannan et al propose what is known as a "Multiphase Monte Carlo" algorithm for volume estimation. The idea is simple - instead of directly estimating $$\frac{\mathrm{vol} (K)}{\mathrm{vol} (H)}$$, which can be exponentially small, they propose to estimate $$\frac{\mathrm{vol} (K)}$$ by expressing it as scaling of a product of polynomially many factors $$\Lambda_i \in [1,2]$$ which are in turn estimated. $$m = cn \log{n}$$ domains $$K_1 \subseteq \dots \subseteq K_m$$ are generated, and $$\Lambda_i$$ is defined as $$\mathrm{vol}(K_i)/\mathrm{vol}(K_i−1)$$. By telescopic product, this becomes equal to the volume scaled by the inverse of $$ \mathrm{vol} (K_0)$$ which is a known quantity when $$K_0$$ is chosen as the unit-sphere enclosed in $$K$$. Each $$\Lmabda_i$$ can now be estimated by a Monte Carlo approach, but there is a catch - how does one generate a point uniformly randomly from $$K_i$$? A means to tackle this problem is to "design" a random walk in $$K_i$$ that mixes rapidly and whose stationary distribution is uniform in $$K_i$$.
 
 **Lazy random walk in $$K$$ with $$\delta$$-steps**:
 With equal probability, the random walk evolves as follows:
 1. Generate a uniformly random point at a distance of $$\delta$$ from the current point. The walk updates to the new point if it lies in $$K$$. If it is not in $$K$$, the walk stays at the same point. If the point updates, it is known as a "proper-step".
 2. stays at the same point.
 
-**Theorem 1** [[^KLS97]]:
+One can expect that if the random walk enters into a "corner" of $$K$$. In such a scenario, there may be an exponentially small probability for the walk to update to a new point. In this regard, there is the need to define the **conductance** at some point $x$:
+\begin{equation}
+\ell_\delta (x) = \frac{\mathrm{vol} (K \cap \mathrm{Ball} (\mathbf{0}, \delta))}{\mathrm{vol} (\mathrm{Ball} (\mathbf{0}, \delta))}
+\end{equation}
+
+**Theorem 1** \[[^KLS97]\]:
 It is possible to sample $$N$$ points $$\{v_1,\dots,v_N\}$$ from $$K$$ in time $$\mathcal{O}^* (n^4 + Nn^3)$$ such that
 1. **almost uniform**: each $$v_i$$ comes from a near uniform distribution (total variation distance to uniform is bounded by $$\epsilon$$)
 2. **almost pairwise independent**: $$i,j \in [N]$$ such that $$i \ne j$$ and $$A, B \subset K$$,
