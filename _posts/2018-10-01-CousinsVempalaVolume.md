@@ -20,10 +20,7 @@ There are some important things to note about this problem:
 1. An obvious deterministic approach to try is to partition the space into cells and count the number of cells that intersect with $$K$$. Such a na&iuml;ve counting algorithm is probably not very efficient - there would potentially be too many cells to count. For instance, dividing the space into hypercubes and counting the number of hypercubes that intersect with $$K$$ is not a practical approach - the volume of $$K$$ can be as high as $$\mathrm{vol} (\mathrm{Ball}_n (\mathbf{0},\sqrt{n})) \sim e^{\Theta(n)}$$ and as low as $$\mathrm{vol} (\mathrm{Ball}_n (\mathbf{0},1)) \sim \Theta(n)^{-n}$$. Any na&iuml;ve counting algorithm that is efficient for $$\mathrm{Ball}_n (\mathbf{0},\sqrt{n})$$ is not accurate for $$\mathrm{Ball}_n (\mathbf{0},1)$$ and vice-versa. Can one hope for polynomial-time (in $$n$$ and $$\epsilon$$) algorithms?
 2. A similar issue lies with a na&iuml;ve Monte-carlo approach. Given a bounding hypercube $$H$$ containing $$K$$, the volume of $$K$$ can be as low as $$ \mathrm{vol} (H) \Theta(n)^{-n}$$ (if $$K$$ is a sphere) and on average $$\Theta(n)^{n}$$ points would have to be sampled to even hit $$K$$ once.
 
-## L&ouml;wner-John Ellipsoid
-For some convex body $$K \subseteq \mathbb{R}^n$$, let $$E_{\mathrm{circ}}$$ denote the ellipsoid containing $$K$$ with minimum volume. Then, shrinking $$E_{\mathrm{circ}}$$ by a factor of $$n$$ gives an ellipsoid $$E_{\mathrm{insc}} \subset K$$.
-
-## The seminal work of Ravi Kannan et al [[^KLS97]] and volume estimation by sampling
+## The seminal work of Ravi Kannan et al [[^KLS97]]
 
 Ravi Kannan et al propose what is known as a "Multiphase Monte Carlo" algorithm for volume estimation. The idea is simple - instead of directly estimating $$\frac{\mathrm{vol} (K)}{\mathrm{vol} (H)}$$, which can be exponentially small, they propose to estimate $$\mathrm{vol} (K)$$ by expressing it as scaling of a product of polynomially many factors $$\Lambda_i \in [1,2]$$ which are in turn estimated. $$m = cn \log{n}$$ domains $$K_1 \subseteq \dots \subseteq K_m$$ are generated, and $$\Lambda_i$$ is defined as $$\mathrm{vol}(K_i)/\mathrm{vol}(K_i−1)$$. By telescopic product, this becomes equal to the volume scaled by the inverse of $$ \mathrm{vol} (K_0)$$ which is a known quantity when $$K_0$$ is chosen as the unit-sphere enclosed in $$K$$. Each $$\Lambda_i$$ can now be estimated by a Monte Carlo approach, but there is a catch - how does one generate a point uniformly randomly from $$K_i$$? A means to tackle this problem is to "design" a random walk in $$K_i$$ that mixes rapidly and whose stationary distribution is uniform in $$K_i$$.
 
@@ -36,7 +33,14 @@ One can expect that if the random walk enters into a "corner" of $$K$$. In such 
 \begin{equation}
 \ell_\delta (x) = \frac{\mathrm{vol} (K \cap \mathrm{Ball} (\mathbf{0}, \delta))}{\mathrm{vol} (\mathrm{Ball} (\mathbf{0}, \delta))}
 \end{equation}
-While it may be unreasonable to expect small conductance at all points in $$K$$ (in particular at the boundaries the conductance is no more than $$0.5$$), does a large average conductance imply rapid mixing? The answer is in the affirmative and is given by Lemma 
+While it may be unreasonable to expect small conductance at all points in $$K$$ (in particular, at the boundaries of $$K$$ the conductance is no more than $$0.5$$), does a large average conductance imply rapid mixing? The answer is in the affirmative and and is given by 
+
+## Sandwiching and its importance
+Sandwiching $$K$$ is to find a linear transform $$A$$ such that the ratio of the radii of circumscribed and inscribed balls is small $$AK$$.
+
+### L&ouml;wner-John Ellipsoid
+For some convex body $$K \subseteq \mathbb{R}^n$$, let $$E_{\mathrm{john}}$$ denote the ellipsoid containing $$K$$ with minimum volume. Then, shrinking $$E_{\mathrm{john}}$$ by a factor of $$n$$ gives an ellipsoid that is entirely contained in $$K$$. We do not know how to construct the L&ouml;wner-John Ellipsoid unless strong conditions are imposed on $$K$$. It is apparent that these ellipsoids provide a sandwitching ratio of $$n$$ by a linear transformation that takes the ellipsoids to a ball. 
+
 
 **Theorem 1** \[[^KLS97]\]:
 It is possible to sample $$N$$ points $$\{v_1,\dots,v_N\}$$ from $$K$$ in time $$\mathcal{O}^* (n^4 + Nn^3)$$ such that
