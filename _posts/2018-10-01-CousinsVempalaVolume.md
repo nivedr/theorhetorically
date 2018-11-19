@@ -4,11 +4,10 @@ title: Fast estimation of Gaussian volumes
 use_math: true
 ---
 
-
 This blog post discusses Santosh Vempala and Ben Cousins' [2014 paper](https://arxiv.org/abs/1409.6011) on estimation of Volume and Gaussian Volume of a well-rounded convex body.
 
 ## The Problem
-A convex body $$K \subset \mathbb{R}^n$$ is said to be "well-rounded" if it lies entirely within a balls of radius $$1$$ and $$\sqrt{n}$$:
+A convex body $$K \subset \mathbb{R}^n$$ is said to be "well-rounded" if it lies entirely in between concentric balls of radius $$1$$ and radius $$\sqrt{n}$$:
 \begin{equation}
 \mathrm{Ball}_n (1) \subseteq K \subseteq \mathrm{Ball}_n (\sqrt{n})
 \end{equation}
