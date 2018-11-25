@@ -5,10 +5,4 @@ permalink: /about/
 use_math: true
 ---
 
-Some information about me!
-
-### More Information
-
-Under Construction
-
-### Contact me
+Access my homepage [here](https://nivedr.github.io/)!
