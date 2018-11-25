@@ -35,7 +35,7 @@ Ravi Kannan et al \[[^KLS97]\] present an alternate continuous random walk with 
 
 One can expect that if the random walk enters into a sharp "corner" of $$K$$, there may be an exponentially small probability for the walk to update to a new point. Since the stationary distribution of this markov chain is uniform, the conductance at some point $$x$$ can now simply be defined as a density:
 \begin{equation}
-\ell_\delta (x) = \frac{\mathrm{vol} (K \cap \mathrm{Ball} (\mathbf{0}, \delta))}{\mathrm{vol} (\mathrm{Ball} (\mathbf{0}, \delta))}
+\ell_\delta (x) = \frac{\mathrm{vol} (K \cap \mathrm{Ball} (x, \delta))}{\mathrm{vol} (\mathrm{Ball} (x, \delta))}
 \end{equation}
 While it may be unreasonable to expect small conductance at all points in $$K$$ (in particular, at the boundaries of $$K$$ the conductance is no more than $$0.5$$), does a large average conductance imply rapid mixing? The answer is in the affirmative and and is given by \[[^KLS97]\].
 
