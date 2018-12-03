@@ -16,7 +16,7 @@ Given a well-rounded convex body $$K \subset \mathbb{R}^n$$,
 2. The Gaussian volume estimation problem is to estimate $$\int_{K} \gamma(x) \mathrm{d} x$$ to within a fractional error of $$\epsilon$$ where $$\gamma(x)$$ is the Gaussian density function, $$(2 \pi)^{-n/2} e^{-\| x \|^2 / 2}$$.
 
 Inline-style: 
-![alt text](../images/motecarlo.svg "Logo Title Text 1")
+![alt text](../images/montecarlo.svg "Setting of the problem")
 
 There are some important things to note about this problem:
 
@@ -50,7 +50,7 @@ It is important to know that in general, good isoperimetric inequalities would g
 
 ## Prior simulated annealing based approaches
 
-Lov&aacute;sz and Vempala \[[^LV06]\] present a different approach based on simulated annealing. The idea here is to lift $$K$$ into $$n+1$$ dimensions to form a pencil with cross section $$K$$ that sharpens to a point. Consider the 
+Lov&aacute;sz and Vempala \[[^LV06]\] present a different approach based on simulated annealing. The idea here is to lift $$K$$ into $$n+1$$ dimensions to form a pencil with cross section $$K$$ that sharpens to a point called $$K'$$. The function $$Z(a) =  \int_{K'} e^{-a x_0} dx$$ where 
 
 ## Outline in \[[^CV16]\]
 
