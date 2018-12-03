@@ -15,8 +15,8 @@ Given a well-rounded convex body $$K \subset \mathbb{R}^n$$,
 1. The volume estimation problem is to estimate $$\mathrm{vol} (K)$$ to within a fractional error of $$\epsilon$$.
 2. The Gaussian volume estimation problem is to estimate $$\int_{K} \gamma(x) \mathrm{d} x$$ to within a fractional error of $$\epsilon$$ where $$\gamma(x)$$ is the Gaussian density function, $$(2 \pi)^{-n/2} e^{-\| x \|^2 / 2}$$.
 
- {:.center}
-![problem setting](../images/montecarlo.svg "Setting of the problem")
+{:.center}
+![problem setting](../images/montecarlo.png "Setting of the problem")
 
 There are some important things to note about this problem:
 
