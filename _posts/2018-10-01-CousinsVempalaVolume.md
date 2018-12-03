@@ -17,6 +17,7 @@ Given a well-rounded convex body $$K \subset \mathbb{R}^n$$,
 
 {:.center}
 ![problem setting](../images/montecarlo.png "Setting of the problem")
+Figure 1: 
 
 There are some important things to note about this problem:
 
