@@ -57,7 +57,7 @@ Lov&aacute;sz and Vempala \[[^LV06]\] present a different approach based on simu
 \begin{equation}
 \sqrt{n} \mathrm{Vol} (K) \le \mathrm{Vol} (K') \le 2\sqrt{n} \mathrm{Vol} (K) 
 \end{equation}
-The crucial observation is that the integral $$Z(a) =  \int_{K'} e^{-a x_0} dx$$ depending on the value of $a$ is an estimate for the volume of one of the 
+The crucial observation is that the integral $$Z(a) =  \int_{K'} e^{-a \vec{x}_0} d\vec{x}$$ where $\vec{x}_i$ is the $i^{th}$ coordinate of $\vec{x}$ depending on the value of $$a$$ can be a good estimate for $\mathrm{Vol} (K')$ as well as the volume of the unit-sphere in $$n$$ dimensions. 
 
 {:.center}
 ![problem setting](../images/2018-10-01-CousinsVempalaVolume/sharpened.png "Sharpened pencil")
