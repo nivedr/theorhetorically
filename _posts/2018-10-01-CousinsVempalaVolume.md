@@ -19,7 +19,7 @@ Given a well-rounded convex body $$K \subset \mathbb{R}^n$$,
 ![problem setting](../images/2018-10-01-CousinsVempalaVolume/montecarlo.png "Setting of the problem")
 
 {:.center}
-Figure 1: 
+**Figure 1:** Each $$K_i$$ is the intersection of $$K$$ with a ball
 
 There are some important things to note about this problem:
 
@@ -63,7 +63,7 @@ The crucial observation is that the integral $$Z(a) =  \int_{K'} e^{-a x_0} dx$$
 ![problem setting](../images/2018-10-01-CousinsVempalaVolume/sharpened.png "Sharpened pencil")
 
 {:.center}
-Figure 2: 
+**Figure 2: ** $$K$$ lifted into $$n+1$$ dimensions to create a "pencil"
 
 
 ## Outline in \[[^CV16]\]
