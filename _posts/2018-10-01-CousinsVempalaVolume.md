@@ -16,7 +16,9 @@ Given a well-rounded convex body $$K \subset \mathbb{R}^n$$,
 2. The Gaussian volume estimation problem is to estimate $$\int_{K} \gamma(x) \mathrm{d} x$$ to within a fractional error of $$\epsilon$$ where $$\gamma(x)$$ is the Gaussian density function, $$(2 \pi)^{-n/2} e^{-\| x \|^2 / 2}$$.
 
 {:.center}
-![problem setting](../images/montecarlo.png "Setting of the problem")
+![problem setting](../images/2018-10-01-CousinsVempalaVolume/montecarlo.png "Setting of the problem")
+
+{:.center}
 Figure 1: 
 
 There are some important things to note about this problem:
@@ -51,7 +53,18 @@ It is important to know that in general, good isoperimetric inequalities would g
 
 ## Prior simulated annealing based approaches
 
-Lov&aacute;sz and Vempala \[[^LV06]\] present a different approach based on simulated annealing. The idea here is to lift $$K$$ into $$n+1$$ dimensions to form a pencil with cross section $$K$$ that sharpens to a point called $$K'$$. The function $$Z(a) =  \int_{K'} e^{-a x_0} dx$$ where 
+Lov&aacute;sz and Vempala \[[^LV06]\] present a different approach based on simulated annealing. The idea here is to lift $$K$$ into $$n+1$$ dimensions to form a pencil of length $2 \sqrt{n}$ with cross section $$K$$ that sharpens to a point called $$K'$$. The act of sharpening the pencil does not decrease the volume of the pencil by more than half. Which leads to the inequality: 
+\begin{equation}
+\sqrt{n} \mathrm{Vol} (K) \le \mathrm{Vol} (K') \le 2\sqrt{n} \mathrm{Vol} (K) 
+\end{equation}
+The crucial observation is that the integral $$Z(a) =  \int_{K'} e^{-a x_0} dx$$ depending on the value of $a$ is an estimate for the volume of one of the 
+
+{:.center}
+![problem setting](../images/2018-10-01-CousinsVempalaVolume/sharpened.png "Sharpened pencil")
+
+{:.center}
+Figure 2: 
+
 
 ## Outline in \[[^CV16]\]
 
