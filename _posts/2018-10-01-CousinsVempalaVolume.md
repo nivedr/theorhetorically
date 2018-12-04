@@ -15,12 +15,6 @@ Given a well-rounded convex body $$K \subset \mathbb{R}^n$$,
 1. The volume estimation problem is to estimate $$\mathrm{vol} (K)$$ to within a fractional error of $$\epsilon$$.
 2. The Gaussian volume estimation problem is to estimate $$\int_{K} \gamma(x) \mathrm{d} x$$ to within a fractional error of $$\epsilon$$ where $$\gamma(x)$$ is the Gaussian density function, $$(2 \pi)^{-n/2} e^{-\| x \|^2 / 2}$$.
 
-{:.center}
-![problem setting](../images/2018-10-01-CousinsVempalaVolume/montecarlo.png "Setting of the problem")
-
-{:.center}
-**Figure 1:** Each $$K_i$$ is the intersection of $$K$$ with a ball
-
 There are some important things to note about this problem:
 
 1. An obvious deterministic approach to try is to partition the space into cells and count the number of cells that intersect with $$K$$. Such a na&iuml;ve counting algorithm is probably not very efficient - there would potentially be too many cells to count. For instance, dividing the space into hypercubes and counting the number of hypercubes that intersect with $$K$$ is not a practical approach - the volume of $$K$$ can be as high as $$\mathrm{vol} (\mathrm{Ball}_n (\mathbf{0},\sqrt{n})) \sim e^{\Theta(n)}$$ and as low as $$\mathrm{vol} (\mathrm{Ball}_n (\mathbf{0},1)) \sim \Theta(n)^{-n}$$. Any na&iuml;ve counting algorithm that is efficient for $$\mathrm{Ball}_n (\mathbf{0},\sqrt{n})$$ is not accurate for $$\mathrm{Ball}_n (\mathbf{0},1)$$ and vice-versa. Can one hope for polynomial-time (in $$n$$ and $$\epsilon$$) algorithms?
@@ -29,6 +23,12 @@ There are some important things to note about this problem:
 ## Prior MCMC based approaches
 
 Martin Dyer et al \[[^DFK89]\] propose the first of what is known as a "Multiphase Monte Carlo" randomized algorithm for volume estimation. The idea is simple - instead of directly estimating $$\frac{\mathrm{vol} (K)}{\mathrm{vol} (H)}$$, which can be exponentially small, they propose to estimate $$\mathrm{vol} (K)$$ by expressing it as scaling of a product of polynomially many factors $$\Lambda_i \in [1,2]$$ which are in turn estimated. $$m = cn \log{n}$$ domains $$K_1 \subseteq \dots \subseteq K_m$$ are generated, and $$\Lambda_i$$ is defined as $$\mathrm{vol}(K_i)/\mathrm{vol}(K_{i−1})$$. By telescopic product, this becomes equal to the volume scaled by the inverse of $$ \mathrm{vol} (K_0)$$ which is a known quantity when $$K_0$$ is chosen as the unit-sphere enclosed in $$K$$. Each $$\Lambda_i$$ can now be estimated by a Monte Carlo approach, but there is a catch - how does one generate a point uniformly randomly from $$K_i$$? A means to tackle this problem is to "design" a random walk in $$K_i$$ that mixes rapidly and whose stationary distribution is uniform in $$K_i$$.
+
+{:.center}
+![problem setting](../images/2018-10-01-CousinsVempalaVolume/montecarlo.png "Setting of the problem")
+
+{:.center}
+**Figure 1:** Each $$K_i$$ is the intersection of $$K$$ with a ball
 
 \[[^DFK89]\] propose the "technical" random walk (it is named so for "technical reasons"). Starting from a point in the sphere the random walk evolves by moving along any of the $$2n$$ directions with equal probability if the new point remains in $$K_i$$ and stays put if the new point lies outside $$K_i$$. While the convergence of this random walk itself can be asserted using well known techniques, it is not clear that such a random walk would converge in polynomial time. A main result of theirs is to show that this walk approaches its stationary distribution within an absolute error that is exponentially small in time $$\Omega^* (n^{19})$$. This result is established using a bound on the convergence rate of a reversible markov chain in terms of its **conductance**, $$\Phi$$ and showing that the grid random walk has polynomially bounded conductance. The resistance ($$1-\Phi$$) of a random walk intuitively captures the steady state likelihood of getting trapped in some set of states of the markov chain.
 
@@ -63,7 +63,7 @@ The crucial observation is that the integral $$Z(a) =  \int_{K'} e^{-a x_0} dx$$
 ![problem setting](../images/2018-10-01-CousinsVempalaVolume/sharpened.png "Sharpened pencil")
 
 {:.center}
-**Figure 2: ** $$K$$ lifted into $$n+1$$ dimensions to create a "pencil"
+**Figure 2:** $$K$$ lifted into $$n+1$$ dimensions to create a "pencil"
 
 
 ## Outline in \[[^CV16]\]
