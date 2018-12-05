@@ -73,11 +73,11 @@ If $$a = 0$$, then $$Z(a)$$ exactly equals $$\mathrm{Vol} (K')$$, and therefore 
 \end{equation}
 where $$(i)$$ is known by to within $$\epsilon$$ relative error, $$(iii)$$ is estimated by Monte Carlo sampling, and the estimation of $$(ii)$$, which is the heart of the matter is discussed below.
 
-### Estimating $$Z(a_{i+1}) / Z(z_i)$$
+### Estimating $$Z(a_{i+1}) / Z(a_i)$$
 
 Observe that the ratio of integrals of exponential functions over some domain $$D$$ has a nice property - it can be expressed as the expectated ratio of the two exponential functions over a measure proportional to the density of the first exponential function restricted to $$D$$. It is a simple exercise to show that
 \begin{equation}
-\frac{\int_D e^{- a_2^T \vec{x}} \mathrm{d} \vec{x}}{\int_D e^{- a_1^T \vec{x}} \mathrm{d} \vec{x}} = \mathbb{E} \left[ e^{-(a_2 - a_1)^T \vec{x}} \right], \quad \text{evaluated against the measure } \mu_i = \frac{e^{-a_1^T \vec{x}}}{\int_D e^{-a_1^T \vec{x}} \mathrm{d} \vec{x}} 
+\frac{\int_D e^{- a_2^T \vec{x}} \mathrm{d} \vec{x}}{\int_D e^{- a_1^T \vec{x}} \mathrm{d} \vec{x}} = \mathbb{E} \left[ e^{-(a_2 - a_1)^T \vec{x}} \right], \quad \text{wrt the measure } \mu_i = \frac{e^{-a_1^T \vec{x}}}{\int_D e^{-a_1^T \vec{x}} \mathrm{d} \vec{x}} 
 \end{equation}
 
 ## Outline in \[[^CV16]\]
