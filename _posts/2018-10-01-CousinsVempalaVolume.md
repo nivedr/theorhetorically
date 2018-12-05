@@ -53,13 +53,13 @@ It is important to know that in general, good isoperimetric inequalities would g
 
 ## Prior simulated annealing based approaches
 
-Lov&aacute;sz and Vempala \[[^LV06]\] present a different approach based on simulated annealing. The idea here is to lift $$K$$ into $$n+1$$ dimensions to form a pencil of length $2 \sqrt{n}$ with cross section $$K$$ that sharpens to a point called $$K'$$. The act of sharpening the pencil does not decrease the volume of the pencil by more than half. Which leads to the inequality: 
+Lov&aacute;sz and Vempala \[[^LV06]\] present a different approach based on simulated annealing. The idea here is to lift $$K$$ into $$n+1$$ dimensions to form a pencil of length $2 \sqrt{n}$ with cross section $$K$$ that sharpens to a point called $$K'$$. The act of sharpening the pencil does not decrease the volume of the pencil by more than half, which leads to the inequality: 
 \begin{equation}
 \sqrt{n} \mathrm{Vol} (K) \le \mathrm{Vol} (K') \le 2\sqrt{n} \mathrm{Vol} (K) 
 \end{equation}
 Thus, if one can estimate $$\mathrm{Vol} (K')$$ to within a small relative error, simple Monte Carlo sampling can be used to go the last mile to estimate $$\mathrm{Vol} (K)$$.
 
-The crucial observation made by Lov&aacute;sz and Vempala is that the integral $$Z(a) =  \int_{K'} e^{-a \vec{x}_0} \mathrm{d} \vec{x}$$ ($\vec{x}_i$ is the $i^{th}$ coordinate of $\vec{x}$) depending on the value of $$a$$ can be a good estimate for $\mathrm{Vol} (K')$ as well as the volume of the unit-sphere in $$n$$ dimensions. 
+The crucial observation made by Lov&aacute;sz and Vempala is that the integral $$Z(a) =  \int_{K'} e^{-a \vec{x}\_0} \mathrm{d} \vec{x}$$ (where $\vec{x}\_i$ is the $i^{th}$ coordinate of $\vec{x}$) depending on the value of $$a$$ can be a good estimate for $\mathrm{Vol} (K')$ as well as the volume of the unit-sphere in $$n$$ dimensions. 
 
 {:.center}
 ![problem setting](../images/2018-10-01-CousinsVempalaVolume/sharpened.png "Sharpened pencil")
@@ -69,7 +69,7 @@ The crucial observation made by Lov&aacute;sz and Vempala is that the integral $
 
 If $$a = 0$$, then $$Z(a)$$ exactly equals $$\mathrm{Vol} (K')$$, and therefore if $$a$$ is small ($$\le \frac{\epsilon^2}{\sqrt{n}}$$), then $$Z(a)$$ is within a relative error of $$\epsilon$$ to $$\mathrm{Vol} (K')$$. On the other hand, allowing $$a$$ to be large ($$=2n$$) computes the integral over the "tip" of the pencil to within a relative error of $$\epsilon$$ (as it is exponentially small over the rest of the pencil). Thus, they propose to estimate $$\mathrm{Vol} (K)$$ by generating a sequence $$a_0 > a_1 > \dots > a_m$$ where $$a_0 > 2n$$ and $$ \frac{\epsilon^2}{\sqrt{n}} > a_m$$ as:
 \begin{equation}
-\mathrm{Vol} (K) = \frac{1}{\sqrt{n}} \underbrace{Z(a_0)}_{(i)} \cdot \prod_{i=0}^{m-1} \underbrace{\frac{Z(a_{i+1})}{Z(a_{i})}}_{(ii)} \cdot \underbrace{\frac{\sqrt{n} \mathrm{Vol} (K)}{\mathrm{Vol} (K')}}_{(iii)}
+\mathrm{Vol} (K) = \frac{1}{\sqrt{n}} \underbrace{Z(a_0)}_{(i)} \cdot \prod_{i=0}^{m-1} \underbrace{\frac{Z(a_{i+1})}{Z(a_{i})}}\_{(ii)} \cdot \underbrace{\frac{\sqrt{n} \mathrm{Vol} (K)}{\mathrm{Vol} (K')}}\_{(iii)}
 \end{equation}
 where $$(i)$$ is known by to within $$\epsilon$$ relative error, $$(iii)$$ is estimated by Monte Carlo sampling, and the estimation of $$(ii)$$, which is the heart of the matter is discussed below.
 
@@ -77,7 +77,7 @@ where $$(i)$$ is known by to within $$\epsilon$$ relative error, $$(iii)$$ is es
 
 Observe that the ratio of integrals of exponential functions over some domain $$D$$ has a nice property - it can be expressed as the expectated ratio of the two exponential functions over a measure proportional to the density of the first exponential function restricted to $$D$$. It is a simple exercise to show that
 \begin{equation}
-\frac{\int_D e^{- a_2^T \vec{x}} \mathrm{d} \vec{x}}{\int_D e^{- a_1^T \vec{x}} \mathrm{d} \vec{x}} = \mathbb{E} \left[ e^{-(a_2 - a_1)^T \vec{x}} \right], \quad \text{wrt the measure } \mu_i = \frac{e^{-a_1^T \vec{x}}}{\int_D e^{-a_1^T \vec{x}} \mathrm{d} \vec{x}} 
+\frac{\int_D e^{- a_2^T \vec{x}} \mathrm{d} \vec{x}}{\int_D e^{- a_1^T \vec{x}} \mathrm{d} \vec{x}} = \mathbb{E} \left[ e^{-(a_2 - a_1)^T \vec{x}} \right], \quad \text{wrt the measure } \mu = \frac{e^{-a_1^T \vec{x}}}{\int_D e^{-a_1^T \vec{x}} \mathrm{d} \vec{x}} 
 \end{equation}
 
 ## Outline in \[[^CV16]\]
