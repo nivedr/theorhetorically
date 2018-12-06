@@ -2,6 +2,7 @@
 layout: post
 title: Fast estimation of Gaussian volumes
 use_math: true
+comments: true
 ---
 
 This blog post discusses Ben Cousins and Santosh Vempala's [2016 paper](https://arxiv.org/abs/1409.6011) on estimation of Volume and Gaussian Volume of a well-rounded convex body.
