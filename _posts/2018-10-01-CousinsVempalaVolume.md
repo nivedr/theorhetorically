@@ -82,8 +82,18 @@ Observe that the ratio of integrals of exponential functions over some domain $$
 \end{equation}
 
 ## Outline in \[[^CV16]\]
+Cousins and Vempala present a variant simulated annealing based algorithm for the volume estimation problem. They approach the problem from a similar direction, with the goal of estimating ratios in a series of steps that multiply to give the volume of the body scaled by some known quantity, namely:
+\begin{equation}
+\mathrm{Vol} (K) = C_0 \prod_{i=1}^m \frac{\int_K f(\vec{x}, \sigma_{i+1}^2) \mathrm{d} \vec{x}}{\int_K f(x, \sigma_i^2) \mathrm{d} \vec{x}}
+\end{equation}
+The first observation they make is similar to that in the previous section, given the symmetric Gaussian density $$f$$ and variances $$\sigma_1$$ and $$\sigma_2$$, the quantity $$\frac{\int_K f(x, \sigma_1^2)}{\int_K f(x, \sigma_1^2)}$$ is equal to the expected value of the ratio of $$f(X, \sigma_2^2)$$ to $$f(X, \sigma_1^2)$$ where $$X$$ is a point that is drawn from $$f(\mathbf{0}, \sigma_1^2)$$ restricted to $$K$$. So, given enough points from the distribution $$f(\mathbf{0}, \sigma_1^2)$$, one can estimate this ratio with high accuracy using the empirical estimator if the variance of these terms is low. This idea is coupled with a "warm start" - given a point from $$f (\mathbf{0}, \sigma_1^2)$$, we can perform an operation (a random walk) that generates a random point from $$f (\mathbf{0}, \sigma_2^2)$$ for which the number of required steps depends on the discrepancy between $$\sigma_1$$ and $$\sigma_2$$.
 
-Cousins and Vempala present a modification of a simulated annealing based algorithm that 
+This stipulates their algorithm (a simplistic version that skips some important details):
+1. Sample $$n_0$$ points from a very low-variance Gaussian distribution centered at the unit ball restricted to the $$K$$.
+2. Starting from these points, performs a random walk with $$\delta$$-steps (which they refer to as a ball walk) for a particular $$\delta$$ restricted to $$K$$ and compute the empirical estimate $$ \frac{1}{n_0} \sum_{i=1}^{n_0} f(\vec{x}, \sigma^2)$$. 
+3. Repeat Step 2 by beginning the random walk (with higher $$\delta$$) from the terminal points of the random walk in Step 2.
+
+Each choice of $$\delta$$ ensures that the terminal point of the random walk with warm start converges (in a Total Variation sense) to a Gaussian with a particular density, namely $$f (\mathbf{0},\sigma_i^2)$$, with higher $$\delta$$ giving rise to flatter distributions. Thus there is a tradeoff, if the jump from $$\sigma_i$$ to $$\sigma_{i+1}$$ is too high, the random walk to go to the next iteration will take long to mix, and if the jump is low, the total number of iterations only after which the resultant density becomes "flat enough" would be high.
 
 [^DFK89]: Dyer, M., Frieze, A., Kannan, R.: [A Random Polynomial Time Algorithm for Approximating the Volume of Convex Bodies](https://dl.acm.org/citation.cfm?id=73043), Proc. of the 21st Annual ACM Symposium on Theory of Computing, 1989, pp. 375–381
 [^KLS97]: Kannan, R., Lov&aacute;sz, L., Simonovits, M.: [Random walks and an $$O^*(n^5)$$ volume algorithm](http://web.cs.elte.hu/~lovasz/vol5.pdf). Random Structures and Algorithms $$\mathbf{1}$$, 1-50 (1997)
