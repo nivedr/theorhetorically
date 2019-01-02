@@ -48,11 +48,7 @@ In order to understand the arguments being made by Bubeck et al, some context in
 
 **Manifolds** are spaces for which at every point, one can construct a neighborhood that can be continuously be deformed (formally a homeomorphism exists) to give a Euclidean space. Sometimes, manifolds come with the additional structure of differentiability - if one zooms in enough, the space looks Euclidean! **Differentiable manifolds** permit the definition of a unique "tangent space" at each point in the manifold. Given a differentiable manifold, a **vector field** maps each point in the manifold to a unique vector from its tangent space. A vector field is informally said to be "smooth" if small perturbations to a point on the manifold do not induce large perturbations to the corresponding tangent vector.
 
-A Riemannian manifold is a manifold with an additional structure that allows distances to be computed in a certain way. The general form of the Riemannian manifold tells you how to compute distances precisely at each point on the manifold using a smooth local inner product, $$\langle , \cdot , \rangle_x$$ defined on the tangent space. Intuitively, smoothness means that the angle between two vectors in the tangent space of $$x$$, and the angle between two slightly perturbed versions in the tangent space of some nearby point shouldn't differ by much:
-\begin{align}
-&x \mapsto \langle F^1_x , F_x^2 \rangle_x \quad \text{is smooth},\nonumber\\
-&\text{where } F^1_x \text{ and } F^2_x \text{ are smooth vector fields} 
-\end{align}
+A Riemannian manifold is a manifold with an additional structure that allows distances to be computed in a certain way.
 
 {:.center}
 ![problem setting](../images/2018-10-01-kserver/manifold.png "Riemannian manifold")
@@ -60,9 +56,15 @@ A Riemannian manifold is a manifold with an additional structure that allows dis
 {:.center}
 **Figure 1:** Visualization on the line
 
+The general form of the Riemannian manifold tells you how to compute distances precisely at each point on the manifold using a smooth local inner product, $$\langle , \cdot , \rangle_x$$ defined on the tangent space. Intuitively, smoothness means that the angle between two vectors in the tangent space of $$x$$, and the angle between two slightly perturbed versions in the tangent space of some nearby point shouldn't differ by much:
+\begin{align}
+&x \mapsto \langle F^1_x , F_x^2 \rangle_x \quad \text{is smooth},\nonumber\\
+&\text{where } F^1_x \text{ and } F^2_x \text{ are smooth vector fields} 
+\end{align}
+
 A very simple visualization in on the line is that of projecting a hilly surface onto flat ground (Figure 1). The physical distance between two points on the line is computed as the path length along the surface of the hills. But, in higher than one dimension, this visualization is not adequate - in particular because the path between two points is not uniquely defined. The distance in this case is specified by the curve (geodesic) of shortest length, where the length is added up as per the smooth inner product at each point.
 
 ### 
-The Bregman divergence can be thought of as inducing a Riemannian structure on the function's domain. This is because of the 
+The Bregman divergence can be thought of as inducing a Riemannian structure on the function's domain. Recall that mirror descent can be put into the framework of
 
 [^Bartal96]: Y. Bartal.: [Probabilistic Approximation of Metric Spaces and its Algorithmic Applications.](https://pdfs.semanticscholar.org/4309/2a6a6badf1e1d7be5d4c68d2afef8da619a2.pdf?_ga=2.159339706.1812323292.1544264580-1860306766.1542097864) In Proc. of the 37th Ann. IEEE Symp. on Foundations of Computer Science, pages 184-193, October 1996.
