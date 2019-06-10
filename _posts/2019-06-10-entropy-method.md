@@ -15,7 +15,7 @@ In order to motivate the entropy method, let's first discuss the notion of combi
 
 Spencer's proof relies on showing the following result:
 
-Given a set system $$(X,\mathcal{S})$$, there exists a partial coloring of the set system $$\sigma : X \to \{-1,0,+1\}$$ such that at least $$n/10$$ of the vertices are colored $$\pm 1$, and such that the maximum discrepancy of any of the sets over this partial coloring is, for some constant $$c$$,
+Given a set system $$(X,\mathcal{S})$$, there exists a partial coloring of the set system $$\sigma : X \to \{-1,0,+1\}$$ such that at least $$n/10$$ of the vertices are colored $$\pm 1$$, and such that the maximum discrepancy of any of the sets over this partial coloring is, for some constant $$c$$,
 \begin{equation}
 \max_{S \in \mathcal{S}} | \sum_{x \in S} \sigma(x) | \le \sqrt{n \log m}
 \end{equation}

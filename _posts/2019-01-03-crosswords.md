@@ -10,6 +10,12 @@ Google defines a crossword as a grid of squares with blanks into which words cro
 ## Introduction
 In a crossword, knowing the identity of a particular word can be helpful in figuring out the words that intersect with it. Let us start the crossword with some set of priors for each clue and first consider the simplest model - that the true answer for each clue is one among my set of priors for that clue. If my crossword had just one clue, say "1 across: A type of insect (3)", my guesses could be "ant", "bee" and "fly". For such a crossword picking one of the 3 words with equal probability gives me a success probability of 33.3 % which is the best that can be done. If the crossword was that in Figure \ref{fig:1} with the additional clue "1 down: Sudden uncontrollable anxiety (5)" and my priors were the words alarm and panic, then surely the crossword is solvable with probability 1, since {1 across: ant, 1 down: alarm} is the only valid solution.
 
+{:.center}
+![problem setting](../images/2019-01-03-crosswords/crosswords1.png "Example crossword")
+
+{:.center}
+**Figure 1:** Example from the introduction
+
 ## The Problem
 The problem can be stated abstractly as follows: given a graph $$G$$ with a set of vertices corresponding to clues / words in the crossword. Two vertices are joined by an edge if their corresponding words intersect. Each vertex $v$ is equipped with a function $f_v$ that is defined from $N(v) \to [0,1]$ where $N (\cdot)$ returns the neighbors of a vertex. This function gives us the probability of picking the right word among a set of priors, given the choice of neighbors. $f_v$ is a very restrictive function - even if one of the neighbors is wrongly picked such that the newly revealed letter for clue $v$ does not match with the correct answer at that vertex, $f_v$ becomes $$0$$. 
 
